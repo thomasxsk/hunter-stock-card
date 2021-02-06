@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print Document</title>
+  <link rel="stylesheet" href="print.css">
+</head>
+<body>
+
+  <div id='main'>
+  </div>
+
+  <template id='card'>
+
+      <div class='row section'>
+        <div id='company-info' class='col text-center'>
+          <div id='page-total' class="text-right">page count</div>
+          <div id='hta-name'>Company Name</div>
+          <div id='hta-addr'>Address</div>
+          <div id='hta-contact'>Contact</div>
+        </div>
+      </div>
+
+      <div id='product-info' class="row section">
+
+          <div class="col-6">
+            <div class="row">
+              <div class="col-5">รหัสสินค้า</div>
+              <div id='pid' class='col my-auto'>Product ID</div>
+            </div>
+            <div class="row">
+              <div class="col-5">ชื่อสินค้า</div>
+              <div id='pname' class='col my-auto text-left'>Product name</div>
+            </div>
+            <div class="row">
+              <div class="col-5">หมายเลขหน้าสินค้า</div>
+              <div id='pagenum' class='col my-auto text-left'>Page Number</div>
+            </div>
+          </div>
+          <div class='col'>
+            <div class="row">
+              <div class="col-5">จำนวนสินค้าคงเหลือ</div>
+              <div id='qtyacc' class='col-3 my-auto text-right'></div>
+              <div id='' class='col my-auto' style='padding-left: 10px;'> ชิ้น</div>
+            </div>
+            <div class="row">
+              <div class="col-5">มูลค่าสินค้าคงเหลือ</div>
+              <div id='valacc' class='col-3 my-auto text-right'>Product name</div>
+              <div id='' class='col my-auto' style='padding-left: 10px;'> บาท</div>
+            </div>
+            <div class="row">
+              <div class="col-5">มูลค่าสินค้าคงเหลือเฉลี่ย</div>
+              <div id='valavg' class='col-3 my-auto text-right'>Page Number</div>
+              <div id='' class='col my-auto' style='padding-left: 10px;'> บาท/ชิ้น</div>
+            </div>
+          </div>
+
+      </div>
+      
+      <div class='row product-header'>
+        <div id='c-id' class='col-1 text-left'>No.</div>
+        <div id='c-date' class='col-1 text-left'>Date</div>
+        <div id='c-docId' class='col-2 text-left'>Doc ID</div>
+        <div id='c-type' class='col-05 text-left'>Type</div>
+        <div id='c-qty' class='col-1 text-right'>Qty</div>
+        <div id='c-cost' class='col-1 text-right'>Unit Cost</div>
+        <div id='c-costTotal' class='col-15 text-right'>Total Cost</div>
+        <div id='c-stockqty' class='col-1 text-right'>Qty Acc</div>
+        <div id='c-acc' class='col-15 text-right'>Value Acc</div>
+        <div id='c-avg' class='col-15 text-right'>Value Avg</div>
+      </div>
+  </template>
+
+  <template id='history'>
+    <div class='product-item'>
+      <div class='row'>
+        <div id='id' class='col-1 text-left'>No.</div>
+        <div id='date' class='col-1 text-left'>Date</div>
+        <div id='docId' class='col-2 text-left'>Doc ID</div>
+        <div id='type' class='col-05 text-left'>Type</div>
+        <div id='qty' class='col-1 text-right'>Qty</div>
+        <div id='cost' class='col-1 text-right'>Unit Cost</div>
+        <div id='costTotal' class='col-15 text-right'>Total Cost</div>
+        <div id='stockqty' class='col-1 text-right'>Qty Acc</div>
+        <div id='acc' class='col-15 text-right'>Value Acc</div>
+        <div id='avg' class='col-15 text-right'>Value Avg</div>
+      </div>
+    </div>
+  </template>
+  
+  <script>
+    // let id = new URLSearchParams(window.location.search).get('id')
+    let data = JSON.parse(sessionStorage.getItem('cards'))
+    let htaName = 'บริษัท ฮันเตอร์ ออโตโมทีฟ จำกัด'
+    let htaAddr = '205/1 ถนนยมราชสุขม แขวงป้อมปราบ เขตป้อมปราบศัตรูพ่าย 10100'
+    let htaContact = 'Tel :+66815546465 Email : Brucesarun@gmail.com'
+    let bankaccount = 'ธนาคารกสิกรไทย สาขาคลองถม -- ชื่อบัญชี: บริษัท ฮันเตอร์ออโตโมทีฟ จำกัด -- เลขที่บัญชี: 011-2-96203-4 '
+    
+    document.title = 'Stock Card'
+
+    function getCard(){
+      let cards = data
+      let pageTotal = 0
+      
+      for(let c in cards){
+
+        let elc = document.createElement('div')
+        let divIdC = 'Card'+c
+        elc.setAttribute('id',divIdC)
+        document.getElementById('main').appendChild(elc)
+
+        let history = cards[c].history
+        let divId = ''
+        let cth = 0
+        let pageCounter = 0
+        
+        // loop for each history item
+        for(let h in history){
+          
+          // check if new page is needed
+          if(cth==0 || cth%25 == 0){
+            
+            //page count for all page
+            pageTotal++
+            //New page div
+            let elp = document.createElement('div')
+            let divIdP = 'page'+c+'-'+(pageCounter+1)
+            elp.setAttribute('id',divIdP)
+            elp.classList.add('pageA4')
+            document.getElementById(divIdC).appendChild(elp)
+
+            let el = document.createElement('div')
+            divId = 'card'+c+'-'+(pageCounter+1)
+            el.setAttribute('id',divId)
+            let template = document.querySelector('#card')
+            let clone = template.content.cloneNode(true)
+
+            clone.getElementById('page-total').innerHTML = 'Page '+pageTotal
+            clone.getElementById('hta-name').innerHTML = htaName
+            clone.getElementById('hta-addr').innerHTML = htaAddr
+            clone.getElementById('hta-contact').innerHTML = htaContact
+            clone.querySelector('#pid').innerHTML = cards[c].productId
+            clone.querySelector('#pname').innerHTML = cards[c].productName
+            clone.querySelector('#pagenum').innerHTML = (pageCounter+1)
+            clone.querySelector('#qtyacc').innerHTML = cards[c].stockqty
+            clone.querySelector('#valacc').innerHTML = numFormat(cards[c].valueAcc)
+            clone.querySelector('#valavg').innerHTML = numFormat(cards[c].valueAvg)
+
+            el.append(clone)
+            document.getElementById(divIdP).appendChild(el)
+            
+            //page count for each product
+            pageCounter++
+            
+          }
+          
+          let elh = document.createElement('div')
+          let templateh = document.querySelector('#history')
+          let cloneh = templateh.content.cloneNode(true)
+
+          cloneh.querySelector('#id').innerHTML = history[h].id
+          cloneh.querySelector('#date').innerHTML = history[h].date
+          cloneh.querySelector('#docId').innerHTML = history[h].docId
+          cloneh.querySelector('#type').innerHTML = history[h].type
+          cloneh.querySelector('#qty').innerHTML = history[h].qty
+          cloneh.querySelector('#cost').innerHTML = numFormat(history[h].cost)
+          cloneh.querySelector('#costTotal').innerHTML = numFormat(history[h].costTotal)
+          cloneh.querySelector('#stockqty').innerHTML = history[h].stockqty
+          cloneh.querySelector('#acc').innerHTML = numFormat(history[h].valueAcc)
+          cloneh.querySelector('#avg').innerHTML = numFormat(history[h].valueAvg)
+
+          elh.append(cloneh)
+          document.getElementById(divId).appendChild(elh)
+          cth += 1
+        }
+        let pagenum = document.getElementById(divIdC).querySelectorAll('#pagenum')
+        for(let x of pagenum){
+          x.innerHTML += ' / '+pageCounter 
+        }
+      }
+      let pageall = document.querySelectorAll('#page-total')
+      for(let x of pageall){
+        x.innerHTML += ' of '+pageTotal 
+      }
+      
+    }
+    
+    function getLogo(){
+      let el = document.createElement('img')
+      el.src = 'logo.png'
+      document.getElementById('logo').appendChild(el)
+    }
+
+    //formatting
+    function simpleDate(dateObj){
+      return new Date((dateObj.seconds * 1000)+(dateObj.nanoseconds / 1000000))
+    }
+    function dateDashDDMMMYYYY(dateObj){
+      let month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+      let dd = ('0'+ dateObj.getDate()).slice(-2)
+      let mmm = month[dateObj.getMonth()]
+      let yyyy = dateObj.getFullYear()
+      return `${dd}-${mmm}-${yyyy}`
+    }
+    function numFormat(num){
+      return new Intl.NumberFormat('th-TH',{minimumFractionDigits: 2,maximumFractionDigits:2}).format(num)
+    }
+
+    getCard()
+    
+  </script>
+</body>
+</html>
