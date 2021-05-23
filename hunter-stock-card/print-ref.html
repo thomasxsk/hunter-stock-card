@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print Document</title>
+  <link rel="stylesheet" href="print.css">
+</head>
+<body>
+  <div id='target'>
+    <div class='row section'>
+      <div id='logo' class='col-2 text-center'></div>
+      <div id='company-info' class='col-10 text-center'>
+        <div id='hta-name'>Company Name</div>
+        <div id='hta-addr'>Address</div>
+        <div id='hta-contact'>Contact</div>
+      </div>
+    </div>
+    
+    <div class='row section'>
+      <div id='doc-name' class='col text-center'>Sales Order</div>
+    </div>
+    
+    <div class='row section'>
+      <div id='' class='col-7'>
+        
+        <div class='row'>
+          <div id='' class='col-2'>M/S:</div>
+          <div id='' class='col-10'>
+            <div id='customer-name'>name</div>
+            <div id='customer-addr1'>addr1</div>
+            <div id='customer-addr2'>addr2</div>
+            <div id='customer-addr3'>addr3</div>
+          </div>
+        </div>
+        
+        <div class='row'>
+          <div id='' class='col-2'>Tax ID:</div>
+          <div id='customer-taxid' class='col-10'></div>
+        </div>
+        <div class='row'>
+          <div id='' class='col-2'>Attn:</div>
+          <div id='customer-attn' class='col-10'></div>
+        </div>
+        <div class='row'>
+          <div id='' class='col-2'>Tel:</div>
+          <div id='customer-phone' class='col-10'></div>
+        </div>
+      
+      </div>
+      
+      <div id='' class='col-5'>
+
+        <div class='row'>
+          <div id='' class='col-5 text-left'>No:</div>
+          <div id='doc-id' class='col-7 text-left'>...</div>
+        </div>
+
+        <div class='row'>
+          <div id='' class='col-5 text-left'>Date:</div>
+          <div id='doc-date' class='col-7 text-left'>...</div>
+        </div>
+        
+        <div class='row'>
+          <div id='' class='col-5 text-left'>P/O No:</div>
+          <div id='' class='col-7 text-left'>...</div>
+        </div>
+        
+        <div class='row'>
+          <div id='' class='col-5 text-left'>Salesman:</div>
+          <div id='doc-salesman' class='col-7 text-left'>...</div>
+        </div>
+
+      </div>
+    </div>
+    
+    <div class='row section'>
+      <div id='products' class='col'>
+        
+        <div class='row product-header'>
+          <div id='' class='col-05 text-center'>No.</div>
+          <div id='' class='col-2 text-left'>Product ID</div>
+          <div id='' class='col-3 text-left'>Description</div>
+          <div id='' class='col-05 text-center'>Qty</div>
+          <div id='' class='col-1 text-center'>Unit</div>
+          <div id='' class='col-15 text-center'>Price</div>
+          <div id='' class='col-1 text-center'>Unit</div>
+          <div id='' class='col-15 text-center'>Amount</div>
+          <div id='' class='col-1 text-center'>Unit</div>
+        </div>
+        
+        <div id='summary'>
+          <div class='row'>
+            <div id='' class='col-7 text-center my-auto'></div>
+            <div id='' class='col-15 text-right my-auto'>Total</div>
+            <div id='' class='col-1 text-center my-auto'></div>
+            <div id='totalAmount' class='col-15 text-right my-auto'>Amount</div>
+            <div id='' class='col-1 text-center my-auto'>THB</div>
+          </div>
+          <div class='row'>
+            <div id='' class='col-7 text-center my-auto'></div>
+            <div id='' class='col-15 text-right my-auto'>VAT</div>
+            <div id='' class='col-1 text-center my-auto'></div>
+            <div id='vatAmount' class='col-15 text-right my-auto'>Amount</div>
+            <div id='' class='col-1 text-center my-auto'>THB</div>
+          </div>
+          <div class='row bold'>
+            <div id='' class='col-7 text-center my-auto'></div>
+            <div id='' class='col-15 text-right my-auto'>Grand Total</div>
+            <div id='' class='col-1 text-center my-auto'></div>
+            <div id='netAmount' class='col-15 text-right my-auto'>Amount</div>
+            <div id='' class='col-1 text-center my-auto'>THB</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id='remark' class='row section'>
+      <div class='col'>
+        <div class='bold'>Notes:</div>
+        <textarea id='doc-notes' disabled></textarea>
+      </div>
+    </div>
+
+    <div id='disclaimer' class='row section'>
+      <div class='col'>
+        *This is a computer generated document, no signature from Hunter Automotive is required.
+      </div>
+    </div>
+    
+    <div id='disclaimer' class='row section'>
+      <div class='col'>
+        <div class='bold'>Terms & Conditions:</div>
+        <div>Hunter Automotive does not warrant that the parts and accessories conform with the existing law, statutes or government regulation. The buyer undertakes and agrees to indemnify Hunter Automotive fully at all times from and against all liability, costs, claims and proceedings in connection there to. Goods sold are not returnable.</div>
+      </div>
+    </div>
+
+    <div id='disclaimer' class='row section'>
+      <div class='col'>
+        <div class='bold'>Payment Details:</div>
+        <div id='bankaccount'>ข้อมูลบัญชีโอนเงิน</div>
+      </div>
+    </div>
+
+    
+    <div id='signature' class='row section'>
+      <div class='col'>
+        <div class='bold'>Customer's Signature:</div>
+        <div id='sign-box'></div>
+        <div id='sign-name'>name</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <template id='product'>
+    <div class='product-item'>
+      <div class='row'>
+        <div id='num' class='col-05 text-center'>No.</div>
+        <div id='id' class='col-2 text-left'>Product ID</div>
+        <div id='name' class='col-3 text-left'>Description</div>
+        <div id='qty' class='col-05 text-center'>Qty</div>
+        <div id='unit' class='col-1 text-center'>Unit</div>
+        <div id='price' class='col-15 text-right'>Price</div>
+        <div id='' class='col-1 text-center'>THB</div>
+        <div id='sum' class='col-15 text-right'>Amount</div>
+        <div id='' class='col-1 text-center'>THB</div>
+        </div>
+      <div class='row'>
+        <div id='' class='col-05 text-center'></div>
+        <div id='' class='col-2 text-left'></div>
+        <div id='discountUse' class='col-3 text-left'></div>
+        <div id='' class='col-05 text-center'></div>
+        <div id='' class='col-1 text-center'></div>
+        <div id='discount' class='col-15 text-right'></div>
+        <div id='discountType' class='col-1 text-center'></div>
+        <div id='sumDiscount' class='col-15 text-right'></div>
+        <div id='sumDiscountUnit' class='col-1 text-center'></div>
+      </div>
+      <div class='row'>
+        <div id='' class='col-05 text-center'></div>
+        <div id='' class='col-2 text-left'></div>
+        <div id='' class='col-3 text-left'>Sub Total</div>
+        <div id='' class='col-05 text-center'></div>
+        <div id='' class='col-1 text-center'></div>
+        <div id='' class='col-15 text-right'></div>
+        <div id='' class='col-1 text-center'></div>
+        <div id='subTotal' class='col-15 text-right'></div>
+        <div id='' class='col-1 text-center'>THB</div>
+      </div>
+      <div class='row'>
+        <div id='' class='col-05 text-center'></div>
+        <div id='notes' class='col-11 text-left'></div>
+      </div>
+    </div>
+  </template>
+
+  <template id='order-details'>
+    <div class='row section'>
+      <div id='orderdetails' class='col'>
+
+        <div class='bold'>Order Details:</div>
+
+        <div class='row'>
+          <div id='' class='col-2'>Shop Name:</div>
+          <div id='od-shop' class='col-10'></div>
+        </div>
+        <div class='row'>
+          <div id='' class='col-2'>KW Model:</div>
+          <div id='od-model' class='col-10'></div>
+        </div>
+        <div class='row'>
+          <div id='' class='col-2'>Car Make:</div>
+          <div id='od-carmake' class='col-10'></div>
+        </div>
+        <div class='row'>
+          <div id='' class='col-2'>Car Model:</div>
+          <div id='od-carmodel' class='col-10'></div>
+        </div>
+        <div class='row'>
+          <div id='' class='col-2'>Engine:</div>
+          <div id='od-engine' class='col-10'></div>
+        </div>
+        <div class='row'>
+          <div id='' class='col-2'>MFY:</div>
+          <div id='od-mfy' class='col-10'></div>
+        </div>
+        <div class='row'>
+          <div id='' class='col-2'>EDS:</div>
+          <div id='od-eds' class='col-10'></div>
+        </div>
+        <div class='row'>
+          <div id='' class='col-2'>Drivetrain:</div>
+          <div id='od-drivetrain' class='col-10'></div>
+        </div>
+      </div>
+    </div>
+
+  </template>
+  
+  <script>
+    let id = new URLSearchParams(window.location.search).get('id')
+    let data = JSON.parse(sessionStorage.getItem(id))
+    let htaName = 'Hunter Automotive Co.,Ltd.'
+    let htaAddr = '205/1 Yommaratsukhum Road Pom Prap Sattru Phai District Bangkok 10100'
+    let htaContact = 'Tel :+66815546465 Email : Brucesarun@gmail.com'
+    let bankaccount = 'ธนาคารกสิกรไทย สาขาคลองถม -- ชื่อบัญชี: บริษัท ฮันเตอร์ออโตโมทีฟ จำกัด -- เลขที่บัญชี: 011-2-96203-4 '
+    
+    // console.log(JSON.stringify(data))
+    
+    document.title = data.docProps.docId
+
+    document.getElementById('hta-name').innerHTML = htaName
+    document.getElementById('hta-addr').innerHTML = htaAddr
+    document.getElementById('hta-contact').innerHTML = htaContact
+    document.getElementById('bankaccount').innerHTML = bankaccount
+
+    document.getElementById('doc-id').innerHTML = data.docProps.docId
+    document.getElementById('doc-date').innerHTML = dateDashDDMMMYYYY(simpleDate(data.docProps.date))
+    document.getElementById('doc-salesman').innerHTML = (data.docProps.salesman) ? data.docProps.salesman : 'n/a'
+    document.getElementById('doc-notes').innerHTML = (data.docProps.notes) ? data.docProps.notes : 'n/a'
+
+    document.getElementById('customer-name').innerHTML = data.customer.docProps.nameFull
+    document.getElementById('customer-addr1').innerHTML = (
+      ((data.customer.address.address) ? data.customer.address.address : 'n/a') + 
+      ((data.customer.address.subDistrict) ? ', '+data.customer.address.subDistrict : '')
+    )
+    document.getElementById('customer-addr2').innerHTML = (
+      ((data.customer.address.district) ? data.customer.address.district : '') + 
+      ((data.customer.address.province) ? ', '+data.customer.address.province : '') +
+      ((data.customer.address.postal) ? ', '+data.customer.address.postal : '')
+    )
+    document.getElementById('customer-addr3').innerHTML = 'Thailand'
+    document.getElementById('customer-taxid').innerHTML = (data.customer.docProps.taxId) ? data.customer.docProps.taxId : 'n/a'
+    document.getElementById('customer-attn').innerHTML = (data.customer.docProps.attn) ? data.customer.docProps.attn : 'n/a'
+    document.getElementById('customer-phone').innerHTML = (data.customer.docProps.phone) ? data.customer.docProps.phone : 'n/a'
+
+    document.getElementById('sign-name').innerHTML = data.customer.docProps.nameFull
+
+    function getContent(){
+      document.getElementById('json').innerHTML = JSON.stringify(data)
+    }
+
+    function getProducts(){
+      let products = data.products
+      let summary = document.getElementById('summary')
+      // let arr = ['id','name','qty','unit','price','sum']
+      let count = 0
+      for(let p in products){
+        count += 1
+        let el = document.createElement('div')
+
+        let template = document.querySelector('#product')
+        let clone = template.content.cloneNode(true)
+
+        clone.querySelector('#num').innerHTML = count
+        clone.querySelector('#id').innerHTML = products[p].docProps.id
+        clone.querySelector('#name').innerHTML = products[p].docProps.name
+        clone.querySelector('#qty').innerHTML = products[p].calculation.qty
+        clone.querySelector('#unit').innerHTML = products[p].calculation.unit
+        clone.querySelector('#price').innerHTML = numFormat(products[p].calculation.price)
+        clone.querySelector('#sum').innerHTML = numFormat(products[p].calculation.sumPrice)
+        clone.querySelector('#subTotal').innerHTML = numFormat(products[p].calculation.subTotal)
+
+        if(products[p].calculation.discountUse == true){
+          clone.querySelector('#discountUse').innerHTML = 'Discount'
+          clone.querySelector('#discount').innerHTML = numFormat(products[p].calculation.discount)
+          clone.querySelector('#sumDiscount').innerHTML = numFormat(products[p].calculation.sumDiscount*-1)
+          clone.querySelector('#sumDiscountUnit').innerHTML = 'THB'
+          if(products[p].calculation.discountType == '%'){
+            clone.querySelector('#discountType').innerHTML = '%'
+          }else{
+            clone.querySelector('#discountType').innerHTML = 'THB'
+          }
+        }
+        
+        clone.querySelector('#notes').innerHTML = (products[p].calculation.orderNotes) ? 'Notes: '+products[p].calculation.orderNotes:'Notes: '+'n/a'
+
+        el.append(clone)
+        document.getElementById('products').insertBefore(el,summary)
+        
+      }
+      summary.querySelector('#totalAmount').innerHTML = numFormat(data.summary.totalAmount)
+      summary.querySelector('#vatAmount').innerHTML = numFormat(data.summary.vatAmount)
+      summary.querySelector('#netAmount').innerHTML = numFormat(data.summary.netAmount)
+    }
+    
+    function getLogo(){
+      let el = document.createElement('img')
+      el.src = 'logo.png'
+      document.getElementById('logo').appendChild(el)
+    }
+    
+    function getOrderDetails(){
+      let orderDetails = data.orderDetails
+      let el = document.createElement('div')
+      let template = document.querySelector('#order-details')
+      let clone = template.content.cloneNode(true)
+      clone.querySelector('#od-shop').innerHTML = (data.orderDetails.docProps.shopName) ? data.orderDetails.docProps.shopName : 'n/a'
+      clone.querySelector('#od-model').innerHTML = (data.orderDetails.docProps.productModel) ? data.orderDetails.docProps.productModel : 'n/a'
+      clone.querySelector('#od-carmake').innerHTML = (data.orderDetails.docProps.carMake) ? data.orderDetails.docProps.carMake : 'n/a'
+      clone.querySelector('#od-carmodel').innerHTML = (data.orderDetails.docProps.carModel) ? data.orderDetails.docProps.carModel : 'n/a'
+      clone.querySelector('#od-engine').innerHTML = (data.orderDetails.docProps.engine) ? data.orderDetails.docProps.engine : 'n/a'
+      clone.querySelector('#od-mfy').innerHTML = (data.orderDetails.docProps.mfy) ? data.orderDetails.docProps.mfy : 'n/a'
+      clone.querySelector('#od-eds').innerHTML = (data.orderDetails.docProps.eds) ? data.orderDetails.docProps.eds : 'n/a'
+      clone.querySelector('#od-drivetrain').innerHTML = (data.orderDetails.docProps.driveTrain) ? data.orderDetails.docProps.driveTrain : 'n/a'
+
+      el.append(clone)
+      document.getElementById('target').insertBefore(el,signature)
+    }
+
+    //formatting
+    function simpleDate(dateObj){
+      return new Date((dateObj.seconds * 1000)+(dateObj.nanoseconds / 1000000))
+    }
+    function dateDashDDMMMYYYY(dateObj){
+      let month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+      let dd = ('0'+ dateObj.getDate()).slice(-2)
+      let mmm = month[dateObj.getMonth()]
+      let yyyy = dateObj.getFullYear()
+      return `${dd}-${mmm}-${yyyy}`
+    }
+    function numFormat(num){
+      return new Intl.NumberFormat('th-TH',{minimumFractionDigits: 2}).format(num)
+    }
+    
+    getLogo()
+    getProducts()
+    if(data.orderDetails && data.orderDetails.docProps){
+      getOrderDetails()
+    }
+  </script>
+</body>
+</html>
